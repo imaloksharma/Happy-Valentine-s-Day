@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #ffcccb;
+            font-family: 'Pacifico', cursive;
+            color: #d50000;
+            text-align: center;
+            position: relative;
+        }
+        .container {
+            position: relative;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: #fff0f5;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 10; /* Ensure the container is above the bubbles */
+        }
+        .heart {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: relative;
+            margin: 20px auto;
+            transform: rotate(-45deg);
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .heart::before {
+            top: -50px;
+            left: 0;
+        }
+        .heart::after {
+            left: 50px;
+        }
+        h1 {
+            font-size: 3em;
+        }
+        p {
+            font-size: 1.5em;
+        }
+        
+        /* Bubble heart styles */
+        .bubble-heart {
+            position: absolute;
+            bottom: -50px; 
+            width: 30px; 
+            height: 30px; 
+            background-color: red; 
+            opacity: 0.7; 
+            border-radius: 50%; 
+            animation-name: rise; 
+            animation-duration: 5s; 
+            animation-timing-function: linear; 
+            animation-iteration-count: infinite; 
+        }
+
+        @keyframes rise {
+            to {
+                transform: translateY(-100vh); /* Move up */
+                opacity: 0; /* Fade out */
+                transform: scale(1.5); /* Grow */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Happy Valentine's Day!</h1>
+    <div class="heart"></div>
+    <p>Sending you all my love ❤️</p>
+    <p>From, Alok Kumar</p>
+</div>
+
+<script>
+    // Function to create bubble hearts
+    function createBubbleHeart() {
+        const bubbleHeart = document.createElement('div');
+        bubbleHeart.className = 'bubble-heart';
+        
+        // Randomize position
+        const leftPosition = Math.random() * window.innerWidth;
+        bubbleHeart.style.left = `${leftPosition}px`;
+        
+        // Append to body
+        document.body.appendChild(bubbleHeart);
+        
+        // Remove bubble heart after animation ends
+        bubbleHeart.addEventListener('animationend', () => {
+           bubbleHeart.remove();
+        });
+    }
+
+    // Create a new bubble heart every second
+    setInterval(createBubbleHeart, 1000);
+
+    document.querySelector('.container').addEventListener('click', function() {
+        alert('Happy Valentine\'s Day! Spread the love! 💖');
+    });
+</script>
+
+</body>
+</html>
